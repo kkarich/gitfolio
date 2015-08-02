@@ -1,0 +1,107 @@
+<section data-ng-controller="ProfileinfosController" data-ng-init="findOne()">
+
+
+	
+<nav class="navbar navbar-default navbar-fixed-top top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#"> {{profileinfo.user.displayName}}</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">{{profileinfo.projectHeader.text }}</a></li>
+        <li><a href="#">{{profileinfo.aboutHeader.text }}</a></li>
+        <li><a href="#">{{profileinfo.contactHeader.text }}</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="jumbotron text-center">
+    <div class="intro-text">
+                 <h1 class = "wow {{profileinfo.welcomeHeader.animation }}">{{profileinfo.welcomeHeader.text }}</h1>
+  <p class = "wow {{profileinfo.welcomeSubHeader.animation }}">  {{profileinfo.welcomeSubHeader.text }} </p>
+                <a href="#portfolio" class="page-scroll btn btn-xl">Tell Me More</a>
+            </div>
+ 
+</div>
+
+<div class = "main-content">
+<div class "row">
+<section id = "about" class = "text-center "> 
+<div class = "container" >
+<h2 class = "wow {{profileinfo.aboutHeader.animation }}" data-wow-offset="100">
+  {{profileinfo.aboutHeader.text }}
+  </h2>
+
+
+<p class = "wow {{profileinfo.aboutSubtext.animation }}" data-wow-offset="200">
+  {{profileinfo.about.text }}
+</p>
+</div>
+</section>
+
+
+
+
+
+<section id = "projects" class = "text-center container col-xs-12"> 
+
+    <h2 class = "wow {{profileinfo.projectHeader.animation }}" data-wow-offset="100">
+        {{profileinfo.projectHeader.text }}
+     </h2>
+
+
+    <p class = "text-muted wow {{profileinfo.projectSubHeader.animation }}" data-wow-offset="200">
+        {{profileinfo.projectSubHeader.text }}
+    </p>
+    
+   <div class="row">  
+        <% @projects.each do |project| }}
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+              <div class="tile wow <%= project.animation }} " data-wow-offset="200" >
+                <img src="<%= project.image }}" alt="Compas" class="tile-image big-illustration">
+                <h3 class="tile-title"><%= project.Name }}</h3>
+                <p><%= project.Description }}</p>
+                <i class="fa fa-github"></i> <%= project.GitHubUrl }} </br>
+                <i class="fa fa-globe"></i> <%= project.WebsiteUrl }}
+              </div>
+            </div>
+        <% end }}
+    </div> <!-- /row -->
+
+</section>
+
+<section id = "contact" class = " col-xs-12"> 
+
+    <h2 class = "text-center wow {{profileinfo.contactHeader.animation }}">
+        {{profileinfo.contactHeader.text }}
+    </h2>
+    
+    <span class = "col-xs-12 col-sm-3 col-sm-offset-3">
+        <i class="fa fa-phone fa-2x"></i> {{profileinfo.PhoneNumber }}
+    </span>
+    
+    <span class = "col-xs-12 col-sm-3">
+        <i class="fa fa-envelope fa-2x"></i>   {{profileinfo.Email }}
+    </span>
+    
+</section>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+ new WOW().init();
+</script>
+    
+    
+</section>
+

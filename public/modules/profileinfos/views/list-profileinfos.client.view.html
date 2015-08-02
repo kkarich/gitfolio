@@ -1,0 +1,19 @@
+<section data-ng-controller="ProfileinfosController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Profileinfos</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="profileinfo in profileinfos" data-ng-href="#!/profileinfos/{{profileinfo._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="profileinfo.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="profileinfo.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="profileinfo.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!profileinfos.$resolved || profileinfos.length">
+    	No Profileinfos yet, why don't you <a href="/#!/profileinfos/create">create one</a>?
+    </div>
+</section>

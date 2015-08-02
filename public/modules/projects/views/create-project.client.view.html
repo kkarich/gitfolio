@@ -1,0 +1,106 @@
+<div class="modal-header">
+    <h3 class="modal-title">New Project</h3>
+</div>
+
+<div class="modal-body " ng-show="state == 'new'" >
+   
+        <div class = "row">
+            <div class="col-md-6">
+                <button class="btn btn-primary" ng-click="getRepos()">Import Repo From Github</button>
+            </div>
+            
+            <div class="col-md-6">
+                <button class="btn btn-primary" ng-click="start()">Start Fresh</button>
+            </div>
+        </div>
+</div>
+    <div ng-show="state == 'select-repo'">
+         <div class="modal-body"  >
+             <div class = "row">
+                <label ng-repeat="repo in repos" class=" col-md-4 radio">
+                    <input type="radio" ng-model="selectedRepo.name" name="optionsRadios" id="optionsRadios1" value="{{repo.name}}" data-toggle="radio" class="custom-radio">
+                        <span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                    {{repo.name}}
+                </label>
+            </div>
+        </div>
+    
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="start(selectedRepo.name)">Lets Go!</button>
+        </div>
+        
+    </div>
+    
+    <div ng-show="state == 'edit-info'" >
+        <div class="modal-body" >
+                <form class="form-horizontal" data-ng-submit="create()" novalidate>
+                    <fieldset>
+                        <div class="">
+                    
+                            <label> Project Name</label>
+                            <input type="text" ng-model="newProject.name" class="form-control">
+                  
+                            <label>  Project Description</label>
+                            <textarea ng-model="newProject.description" class="form-control" rows="3"></textarea>
+                    
+                 <!-- 
+                <div class = "row radio-horizontal">
+                  <label class=" col-md-4 radio">
+                    <input type="radio" ng-model="newProject.image" name="optionsRadios" id="optionsRadios1" value="{{image.option1 }}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                    <img src="{{image.option1 }}" alt="New Project" class="tile-image img-rounded big-illustration">
+                  </label>
+                  
+                  <label class="col-md-4 radio">
+                    <input type="radio" ng-model="newProject.image" name="optionsRadios" id="optionsRadios2" value="{{image.option2 }}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                    <img src="{{image.option2 }}" alt="New Project" class="tile-image img-rounded big-illustration">
+                  </label>
+                  
+                  <label class="col-md-4 radio">
+                    <input type="radio" ng-model="newProject.image" name="optionsRadios" id="optionsRadios3" value="{{image.option3 }}" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                    <img src="{{image.option3 }}" alt="New Project" class="tile-image img-rounded big-illustration">
+                  </label>
+                  
+                  <label class="col-md-4 radio">
+                    <input type="radio" ng-model="newProject.image" name="optionsRadios" id="optionsRadios4" value="other" data-toggle="radio" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                    <p>Other</p>
+                      
+                  </label>
+                  
+                  </div>
+                  -->  
+                  
+                    
+                  
+                    <label>Project Photo - check out <a href = "http://www.pexels.com/" target = "_blank"> Pexels</a> for free stock photos</label>
+                    <input type="text" ng-model="newProject.image" class="form-control">
+                    <img src="{{newProject.image }}" alt="New Project" class="tile-image img-rounded big-illustration">
+                    <br>
+                    
+                    
+                    <label>Project Animation</label>
+                    <animation-select ng-model="newProject.animation"></animation-select>
+          
+                    
+                    <label> <i class="fa fa-github"></i> GitHub URL</label>
+                    <input type="text" ng-model="newProject.githubUrl" class="form-control">
+
+                    <label><i class="fa fa-globe"></i> Website URL</label>
+                    <input type="text" ng-model="newProject.websiteUrl" class="form-control">
+                   
+                
+            </div>
+               
+			<div data-ng-show="error" class="text-danger">
+				<strong data-ng-bind="error"></strong>
+			</div>
+			
+            </fieldset>
+        </form>
+    </div>
+        
+        <div class="modal-footer">
+            
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-primary" ng-click="create()">OK</button>
+        </div>
+    </div>

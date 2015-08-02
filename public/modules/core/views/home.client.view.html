@@ -1,0 +1,137 @@
+<section data-ng-controller="HomeController" data-ng-init = "init()">
+
+<nav id = "menu" class="navbar navbar-inverse navbar-transparent navbar-fixed-top top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+       <a   class="navbar-brand" href="#welcome">
+                            <img src="{{authentication.user.providerData.avatar_url}}" alt="GitHub Avatar" class="img-circle"> 
+                            <span class = "name"> {{profileinfo.user.displayName}} </span>
+                        </a>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+      
+      <ul class="nav navbar-nav navbar-right">
+       <li ><a href="#about">{{profileinfo.aboutHeader.text }}</a></li>
+                   <li  ><a href="#projects">{{profileinfo.projectHeader.text }}</a></li>
+                   <li  ><a href="#contact">{{profileinfo.contactHeader.text }}</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<section id = "welcome" class="jumbotron text-center" ng-style="{'background-image':'url(' + profileinfo.profileImage +  ')'}">
+    <div class="intro-text">
+        <h1 popover-template="'/modules/core/views/forms/welcomeHeader.client.form.html'" popover-title="{{profileinfo.welcomeHeader.text}}" popover-placement = "bottom" class = "wow {{profileinfo.welcomeHeader.animation }}">{{profileinfo.welcomeHeader.text }}</h1>
+        <p popover-template="'/modules/core/views/forms/welcomeSubHeader.client.form.html'" popover-title="{{profileinfo.welcomeSubHeader.text}}" popover-placement = "bottom" class = "wow {{profileinfo.welcomeSubHeader.animation }}">  {{profileinfo.welcomeSubHeader.text }} </p>
+                <a href="#portfolio" class="btn btn-primary btn-xl page-scroll btn btn-xl">Tell Me More</a>
+            
+    </div>
+    <div popover-template="'/modules/core/views/forms/profileImage.client.form.html'" popover-title="Welcome Image" popover-placement = "right" class = "welcome-image-form">
+        <button class= "btn btn-success"><i class="fa fa-picture-o"></i></i> </button>   
+    </div>
+    
+ 
+</section>
+
+
+<section id = "about" class = "container" ng-init = "editing = false"> 
+
+<h2  popover-template="'/modules/core/views/forms/aboutHeader.client.form.html'" popover-title="{{profileinfo.aboutHeader.text}}" class = "wow {{profileinfo.aboutHeader.animation }} text-center" data-wow-offset="100">
+  {{profileinfo.aboutHeader.text }}
+  </h2>
+<div class = "text-center view" ng-if = "!editing">
+
+
+<button class = "btn btn-success edit" ng-click = "$parent.editing = true" >Edit</button>
+<p ng-bind-html="profileinfo.about.text"  class = "wow {{profileinfo.about.animation }}" data-wow-offset="200">
+ 
+</p>
+
+</div>
+
+<div class = "edit" ng-if = "editing">
+    <div ng-model = "profileinfo.about.text" ui-ace></div> 
+    <button class = "btn btn-success" ng-click = "$parent.update('about',profileinfo.about); $parent.editing = false" >Save</button>
+</div>
+
+</section>
+
+
+
+
+
+<section id = "projects" class = "text-center container col-xs-12"> 
+
+    <h2 popover-template="'/modules/core/views/forms/projectHeader.client.form.html'" popover-title="{{profileinfo.projectHeader.text}}" class = "wow {{profileinfo.projectHeader.animation }}" data-wow-offset="100">
+        {{profileinfo.projectHeader.text }}
+     </h2>
+
+
+    <p popover-template="'/modules/core/views/forms/projectSubHeader.client.form.html'" popover-title="{{profileinfo.projectSubHeader.text}}" class = "text-muted wow {{profileinfo.projectSubHeader.animation }}" data-wow-offset="200">
+        {{profileinfo.projectSubHeader.text }}
+    </p>
+   
+   <div class="row">  
+            <div ng-repeat = "project in projects" class="col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+              <div class="tile wow {{ project.animation }} " data-wow-offset="200" >
+                <img src="{{project.image }}" alt="{{ project.name }}"  class="img-rounded img-responsive">
+                <div class="back">
+                    <h3 class="tile-title">{{ project.name }}</h3>
+                    <p>{{project.description }}</p>
+                   
+                    <div><i class="fa fa-github"></i> <a href = "{{ project.githubUrl }} " target="_blank">{{ project.githubUrl }}  </a></div>
+                    <div><i class="fa fa-globe"></i> <a href = "{{ project.websiteUrl }}" target="_blank">{{ project.websiteUrl }}</a></div>
+               
+                    
+                    <button class = "edit-project btn btn-primary" ng-click = "editProject(project)"> Edit Project</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+              <div class="tile new-project" data-wow-offset="200" >
+              <button class = "btn btn-primary" ng-click = "createProject()"> New Project</button>
+                
+              </div>
+            </div>
+            
+    </div> <!-- /row -->
+
+</section>
+
+
+
+<section id = "contact" class = "text-center section contact col-xs-12"> 
+
+    <h2 popover-template="'/modules/core/views/forms/contactHeader.client.form.html'" popover-title="{{profileinfo.contactHeader.text}}" class = "text-center wow {{profileinfo.contactHeader.animation }}">
+        {{profileinfo.contactHeader.text }}
+    </h2>
+    
+    
+       <div popover-template="'/modules/core/views/forms/email.client.form.html'" popover-title="Email" > <a>{{profileinfo.email.text }}</a> </div>
+   
+   
+  
+    
+</section>
+
+
+
+    
+    
+
+</section>
+
+

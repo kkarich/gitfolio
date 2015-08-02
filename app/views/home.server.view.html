@@ -1,0 +1,10 @@
+{% extends 'layout.server.view.html' %}
+
+{% block content %}
+	<h1>This is the home screen</h1>
+	<a href="/auth/github" class="undecorated-link">
+			<img src="/modules/users/img/buttons/github.png">
+		</a>
+	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
+	
+{% endblock %}
