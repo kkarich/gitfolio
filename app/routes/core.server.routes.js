@@ -7,7 +7,7 @@ module.exports = function(app) {
 	
 	app.route('/view/:gitHubId').get(core.view);
 	app.route('/edit/').get(core.index);
-	app.route('/test/').get(core.test);
+	app.route('/build/').get(core.build);
 	
 	
 	

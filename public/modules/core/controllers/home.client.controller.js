@@ -8,7 +8,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		
 		
 		$scope.authentication = Authentication;
-		console.log("$scope.authentication",$scope.authentication)
 		$scope.gotoSection = function (section){
             $location.hash(section);
             $anchorScroll();
@@ -31,10 +30,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
          modalInstance.result.then(function () {
           //$scope.projects.push = project;
-          console.log("test")
            $scope.projects = Projects.query();
         }, function () {
-          console.log("Canceled new project")
         });
       };
       

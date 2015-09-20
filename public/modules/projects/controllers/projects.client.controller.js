@@ -4,8 +4,8 @@
 angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Projects','Githubapi','$modalInstance','project',
 	function($scope, $stateParams, $location, Authentication, Projects,Githubapi,$modalInstance,project) {
 		$scope.authentication = Authentication;
-		$scope.state = "new"
-		$scope.selectedRepo = {name:""}
+		$scope.state = 'new';
+		$scope.selectedRepo = {name:''};
 		
 		
 		$scope.getRepos = function(){
@@ -74,7 +74,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		
 
         $scope.ok = function () {
-            $scope.create()
+            $scope.create();
             $modalInstance.close();
             };
         
@@ -99,8 +99,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 		$scope.remove = function(project) {
 		    $modalInstance.close();
 				$scope.project.$remove(function() {
-				    
-				console.log("remove else")
 				});
 			
 		};
@@ -110,7 +108,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 			var project = $scope.project;
             
             if(project.image == 'other'){
-                project.image = $scope.image.url
+                project.image = $scope.image.url;
             };
             
 			project.$update(function() {
